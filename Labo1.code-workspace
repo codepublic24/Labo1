@@ -5,7 +5,9 @@
 		}
 	],
 	"settings": {
-		//エディターで制御文字を表示する必要があるかどうかを制御します
+  		// 有効にすると、ファイルの保存時に末尾の空白をトリミングします。
+  		"files.trimTrailingWhitespace": false,
+  		//エディターで制御文字を表示する必要があるかどうかを制御します
 		"editor.renderControlCharacters": true,
 		// 既定の改行文字。LF の場合には \n を CRLF の場合には \r\n を使用してください。
 		"files.eol": "\n",
