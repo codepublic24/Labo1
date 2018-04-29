@@ -11,5 +11,13 @@
 		"files.eol": "\n",
 		//[開いているエディター] ウィンドウに表示するエディターの数
 		"explorer.openEditors.visible": 0
+
+		//以下はユーザー設定のみ 変更後コマンドパレットで変更を実施
+		//Bash on Ubuntu (on Windows)
+		//"terminal.external.windowsExec": "C:\\Windows\\sysnative\\bash.exe",
+		//"terminal.integrated.shell.windows": "C:\\Windows\\sysnative\\bash.exe"
+		//Git Bash
+		//"terminal.external.windowsExec": "C:\\Program Files\\Git\\bin\\bash.exe",
+		//"terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
 	}
 }
