@@ -5,5 +5,7 @@
 		}
 	],
 	"settings": {
+		//[開いているエディター] ウィンドウに表示するエディターの数
+		"explorer.openEditors.visible": 9
 	}
 }
