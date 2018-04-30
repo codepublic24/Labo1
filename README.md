@@ -58,6 +58,10 @@
      - ![account setting3](https://github.com/codepublic24/static-image/blob/master/img-gtihub-06.JPG)
      - ![account setting4](https://github.com/codepublic24/static-image/blob/master/img-gtihub-07.JPG)
  
+ - リポジトリのクローン
+  -     cd <作業ディレクトリ>
+        git clone git@github.com:codepublic24/Labo1.git
+
 
 ## Author
 
