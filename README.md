@@ -7,17 +7,13 @@
 環境構築、スクリプト、テンプレートなど  
 実験中プロジェクトを置いています。
 
-## Anything Else
-
-### ワークログ
+## Work Flow
 
 - 各種アカウント作成(必要であれば)
-  - GitHub
-  - Twitter
-  - Domain
-- ソフトウェアのインストール
-  - Visual Studio Code
-  - Git for Windows(VS Codeで入るはず)
+  - [GitHub](https://github.com/)
+  - [Twitter](https://twitter.com/?lang=ja)
+  - [Domain:お名前.com](https://px.a8.net/svt/ejp?a8mat=2TNCI2+40OCS2+50+2HFY7M)
+
 
 ## Author
 
@@ -26,4 +22,5 @@
 ## License
 
 [MIT](https://github.com/codepublic24/Labo1/blob/master/LICENSE)
+
 
