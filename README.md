@@ -9,16 +9,16 @@
 
 ## Work Flow
 
-- 各種アカウント作成(必要であれば)
+- **各種アカウント作成(必要であれば)**
   - [GitHub](https://github.com/join?source=header-home/)
   - [Twitter](https://twitter.com/signup?lang=ja)
   - [Domain:お名前.com](https://px.a8.net/svt/ejp?a8mat=2TNCI2+40OCS2+50+2HFY7M)
 
-- ソフトウェアのインストール
+- **ソフトウェアのインストール**
   - [Visual Studio Code(以後、VSCode)](https://code.visualstudio.com/download)
   - [Git for Windows(VS Codeで入るはず)](https://gitforwindows.org/)
 
-- ソフトウェア構成管理の準備(SCM)]
+- **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
     - New repositryを押下  
       ![new repository](https://github.com/codepublic24/static-image/blob/master/img-gtihub-01.JPG)
@@ -27,7 +27,7 @@
     - READMEを自動でつくる＋ライセンスの設定  
       ![initialize](https://github.com/codepublic24/static-image/blob/master/img-gtihub-03.JPG)
 
-- VSCodeの設定変更１
+- **VSCodeの設定変更１**
   - 統合ターミナルをGitBashに変更  
     [Ctrl + ,]押下後ユーザ- 設定に以下を記載
     ```Bash
@@ -39,7 +39,7 @@
     再度[Ctrl + @]を入力しターミナル再起動  
     GitBashに変更されれば成功
 
-- Gitクライアントの設定  
+- **Gitクライアントの設定**  
    (コマンドを選択してコマンドパレットでtrsを入力すると楽)
   - ユーザー情報の設定
     ```Bash
@@ -55,7 +55,7 @@
     git config --global core.quotepath false
     ```
   - SSH(秘密鍵、公開鍵)の作成
-    ```Bash
+    ```Bash:GitBash
     mkdir ~/.ssh  
     cd ~/.ssh
     ssh-keygen -t rsa -C 'メールアドレス'
@@ -76,18 +76,18 @@
 
 ## Anything Else
 
-- memo
-  - [VSCode]
+- *memo*
+  - **[VSCode]**
     - コマンドパレット
       - Ctrl + Shift + p
     - 選択部分のコマンド実行
       - Ctrl + Shift + P, t, r, s
     - mdファイルのプレビュー
       - Ctrl + k, v
-  - [Bash]
+  - **[Bash]**
     - 履歴の編集
       - vi ~/.bash_history
-  - [Git]
+  - **[Git]**
     - show/diff関係
       - 確認
         - git diff
