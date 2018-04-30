@@ -2,6 +2,17 @@
 
 実験用プロジェクト(host:Windows)
 
+	
+		
+			
+    
+        
+            
+　　
+　　　　
+　　　　　　
+
+
 ## Description 
 
 環境構築、スクリプト、テンプレートなど  
@@ -23,6 +34,10 @@
     - git-forestaを以下にコピー
       - C:\Program Files\Git\usr\bin
       - C:\Program Files\Git\mingw64\bin
+  - [Whitespace+](https://marketplace.visualstudio.com/items?itemName=davidhouchin.whitespace-plus)
+    - [Ctrl + Shift + x]押下後、[Whitespace+]をインストール
+    - [Ctrl + Shift + p]押下後、[Whitespace+ Config]を実行
+      - [davidhouchin.whitespace-plus-0.0.5/config.json]の内容で上書き
 
 - **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
