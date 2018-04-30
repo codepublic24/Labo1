@@ -121,8 +121,14 @@
         - git reflog  
           git reset <シンボル>
     - log関係
-      - 簡易表示
+      - 簡易表示(ローカルカレント)
         - git log --oneline
+      - ツリー表示(ローカルカレント)
+        - git log --oneline --graph --decorate
+      - 簡易表示(ローカルのすべて)
+        - git log --oneline --all
+      - ツリー表示(ローカルのすべて)
+        - git log --oneline --graph --decorate --all
     - rebase関係
       - 修正したいハッシュ＋１を指定
         - git rebase -i <ハッシュ>
