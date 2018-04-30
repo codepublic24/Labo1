@@ -27,6 +27,16 @@
     - READMEを自動でつくる＋ライセンスの設定
       - ![initialize](https://github.com/codepublic24/static-image/blob/master/img-gtihub-03.JPG)
 
+- VSCodeの設定変更１
+  - 統合ターミナルをGitBashに変更  
+    [Ctrl + ,]押下後ユーザ- 設定に以下を記載
+    -     "terminal.external.windowsExec": "C:\\Program Files\\Git\\bin\\bash.exe",
+          "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+  - 統合ターミナルの再起動  
+    [Ctrl + @]押下後[exit]を入力しターミナルを終了  
+    再度[Ctrl + @]を入力しターミナル再起動  
+    GitBashに変更されれば成功
+
 ## Author
 
 [@codepublic24](https://twitter.com/codepublic24)
