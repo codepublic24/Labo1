@@ -2,18 +2,7 @@
 
 実験用プロジェクト(host:Windows)
 
-	
-		
-			
-    
-        
-            
-　　
-　　　　
-　　　　　　
-
-
-## Description 
+## Description
 
 環境構築、スクリプト、テンプレートなど  
 実験中プロジェクトを置いています。
@@ -77,7 +66,7 @@
     ```
   - SSH(秘密鍵、公開鍵)の作成
     ```Bash:GitBash
-    mkdir ~/.ssh  
+    mkdir ~/.ssh
     cd ~/.ssh
     ssh-keygen -t rsa -C 'メールアドレス'
     chmod 600 id_rsa
@@ -88,7 +77,7 @@
     ![account setting2](https://github.com/codepublic24/static-image/blob/master/img-gtihub-05.JPG)  
     ![account setting3](https://github.com/codepublic24/static-image/blob/master/img-gtihub-06.JPG)  
     ![account setting4](https://github.com/codepublic24/static-image/blob/master/img-gtihub-07.JPG)  
- 
+
   - リポジトリのクローン
     ```Bash
     cd <作業ディレクトリ>
@@ -215,32 +204,32 @@
       - masterで作業し(ブランチを作り忘れ)てしまった(コミット前)
         - git checkout -b working
       - masterで作業し(ブランチを作り忘れ)てしまった(コミット後 すべてブランチへコピー)
-        - git checkout -b working origin/master 
-          git merge master
-          git checkout master
-          git log --oneline
-          git reset --hard <戻したいハッシュ>
+        - git checkout -b working origin/master  
+          git merge master  
+          git checkout master  
+          git log --oneline  
+          git reset --hard <戻したいハッシュ>  
           git log --oneline --all
       - masterで作業し(ブランチを作り忘れ)てしまった(コミット後 特定の対応のみブランチへコピー)
-        - git checkout -b working origin/master 
-          git log --oneline master 
-          git cherry-pick <master側のハッシュ>
-          git checkout master
-          git log --oneline
-          git reset --hard <戻したいハッシュ>
+        - git checkout -b working origin/master  
+          git log --oneline master  
+          git cherry-pick <master側のハッシュ>  
+          git checkout master  
+          git log --oneline  
+          git reset --hard <戻したいハッシュ>  
           git log --oneline --all
       - ブランチの作業をmasterへマージ(Confictが発生していない場合)
         - git checkout master  
           git merge <マージ元のブランチ>
       - ブランチの作業をmasterへマージ(マージコミットを作らない)(Confictが発生している場合)
-        - git checkout master
+        - git checkout master  
           git merge --ff <マージ元のブランチ>  
           git status  
           vi <Conflictの発生しているファイル>  
           git add <Conflictを解消したファイル>  
           git commit -m "[merge]fixed conflict" -m "" -m "マージの説明(機能説明、ハッシュ等)"
       - ブランチの作業をmasterへマージ(マージコミットを作る)(Confictが発生している場合)
-        - git checkout master
+        - git checkout master  
           git merge --no-ff <マージ元のブランチ>  
           git status  
           vi <Conflictの発生しているファイル>  
