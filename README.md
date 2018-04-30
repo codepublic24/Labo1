@@ -209,8 +209,13 @@
         - vi <Conflictの発生しているファイル>
         - git add <Conflictを解消したファイル>
         - git commit -m "[merge]fixed conflict" 
-      - masterの更新をブランチへ反映
-        - git pull
+      - masterの更新をブランチへ反映(masterを最新へ、その後rebaseで付け替える)
+        - git checkout master  
+          git pull origin master  
+          git checkout working  
+          git rebase master  
+          ※開発ブランチをリモートに上げている場合且つ更新する場合  
+          git push -f origin working
       - ブランチ切り替えができない(Changes not staged for commit)
         - git stash
       - ブランチ切り替えができない(編集ファイルごと初期化)(Changes not staged for commit)
