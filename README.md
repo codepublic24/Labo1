@@ -74,6 +74,17 @@
     git clone git@github.com:codepublic24/Labo1.git
     ```
 
+  - **[Markdown]**
+    - エスケープ
+      - 「\」をMarkdownの前につけることでMarkdownを無効化
+    - 参照
+      - MarkdownページのURLに「.md」をつけると記法が見れる
+    - テーブル
+      - |左揃え|中央揃え|右揃え|
+        |:---|:---:|--:|
+        |align-left|align-center|align-right|
+
+
 ## Anything Else
 
 - *memo*
