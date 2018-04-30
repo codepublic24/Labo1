@@ -62,6 +62,76 @@
   -     cd <作業ディレクトリ>
         git clone git@github.com:codepublic24/Labo1.git
 
+## Anything Else
+
+- memo
+  - [VSCode]
+    - コマンドパレット
+      - Ctrl + Shift + p
+    - 選択部分のコマンド実行
+      - Ctrl + Shift + P, t, r, s
+    - mdファイルのプレビュー
+      - Ctrl + k, v
+  - [Bash]
+    - 履歴の編集
+      - vi ~/.bash_history
+  - [Git]
+    - show/diff関係
+      - 確認
+        - git diff
+      - 確認(ファイル指定)
+        - git diff -- <ファイルパス>
+      - 確認(git addした後)
+        - git diff --cached
+      - 確認(コミット済み)
+        - git show <ハッシュ>
+    - commit関係
+      - １行ログ
+        - git commit -m "コメント"
+      - １行ログ ファイル指定
+        - git commit -m "コメント" -- <ファイルパス１>  <ファイルパス２>
+      - ３行ログ
+        - git commit -m "コメント" -m "" -m "詳細説明"
+    - log関係
+      - 簡易表示
+        - git log --oneline
+    - rebase関係
+      - 修正したいハッシュ＋１を指定
+        - git rebase -i <ハッシュ>
+      - 中止
+        - git rebase --abort
+    - stash関係
+      - 形式
+        - <stash名>: WIP on <stashを行ったブランチ名>: <ハッシュ> <コミットコメント> 
+      - 保存
+        - git stash
+      - 保存(メモ付き)
+        - git stash save "message"
+      - 確認
+        - git stash list
+      - 確認(パッチ形式)
+        - git stash list -p
+      - 取り出し＋削除
+        - git stash pop <stash名>
+      - 取り出し
+        - git stash apply <stash名>
+      - 削除
+        - git stash drop <stash名>
+      - 全削除
+        - git stash clear
+    - global関係
+      - リポジトリのURL確認
+        - git remote -v
+      - httpsでclone後、originをsshへ変更
+        - git remote set-url origin git@github.com:codepublic24/Labo1.git
+      - 確認
+        - git config --global --list
+    - ignore関係
+      - テンプレート
+        - [ここを参照](https://github.com/github/gitignore/tree/master/Global)
+    - hook関係
+      - リポジトリ内の[Settings] - [Webhooks]
+
 
 ## Author
 
