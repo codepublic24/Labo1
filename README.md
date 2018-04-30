@@ -37,6 +37,28 @@
     再度[Ctrl + @]を入力しターミナル再起動  
     GitBashに変更されれば成功
 
+ - Gitクライアントの設定  
+   (コマンドを選択してコマンドパレットでtrsを入力すると楽)
+   - ユーザー情報の設定
+   -     git config --global user.email 'メールアドレス'
+         git config --global user.name '名前'
+   - コミット時の改行コード変換(false=無効)
+   -     git config --global core.autocrlf false
+   - UTF-8の日本語コメント表示設定
+   -     git config --global core.quotepath false
+   - SSH(秘密鍵、公開鍵)の作成
+   -     mkdir ~/.ssh  
+         cd ~/.ssh
+         ssh-keygen -t rsa -C 'メールアドレス'
+         chmod 600 id_rsa
+         clip < ~/.ssh/id_rsa.pub
+   - GitHubのアカウント設定から作成した公開鍵を設定
+     - ![account setting1](https://github.com/codepublic24/static-image/blob/master/img-gtihub-04.JPG)
+     - ![account setting2](https://github.com/codepublic24/static-image/blob/master/img-gtihub-05.JPG)
+     - ![account setting3](https://github.com/codepublic24/static-image/blob/master/img-gtihub-06.JPG)
+     - ![account setting4](https://github.com/codepublic24/static-image/blob/master/img-gtihub-07.JPG)
+ 
+
 ## Author
 
 [@codepublic24](https://twitter.com/codepublic24)
