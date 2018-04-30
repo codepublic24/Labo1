@@ -16,7 +16,13 @@
 
 - **ソフトウェアのインストール**
   - [Visual Studio Code(以後、VSCode)](https://code.visualstudio.com/download)
+    - インストーラー
   - [Git for Windows(VS Codeで入るはず)](https://gitforwindows.org/)
+    - インストーラー
+  - [git-foresta](https://github.com/takaaki-kasai/git-foresta)
+    - git-forestaを以下にコピー
+      - C:\Program Files\Git\usr\bin
+      - C:\Program Files\Git\mingw64\bin
 
 - **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
@@ -149,6 +155,8 @@
         - git log --oneline --graph --decorate --all
       - ツリー表示(詳細)(ローカルのすべて)
         - git log --oneline --graph --decorate --all -p
+      - git-forestaをインストールしている場合
+        - git-foresta --all
     - rebase関係
       - 修正したいハッシュ＋１を指定  
         fixup(msg破棄)/squas(msg統合)は直前のハッシュに統合
