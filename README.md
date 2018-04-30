@@ -101,6 +101,8 @@
         - git diff -- <ファイルパス>
       - 確認(git addした後)
         - git diff --cached
+      - 確認(最後のコミット)
+        - git show @^
       - 確認(特定のコミットの差分)
         - git show <ハッシュ>
     - commit関係
