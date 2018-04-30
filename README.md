@@ -154,6 +154,61 @@
         - git stash drop <stash名>
       - 全削除
         - git stash clear
+    - branch関係
+      - ローカルブランチとリモートブランチの一覧を表示
+        - git branch --all
+      - ローカルブランチの一覧を表示
+        - git branch
+      - ローカルブランチを削除
+        - git branch --delete <ローカルブランチ名>
+      - ローカルブランチを削除(マージチェックを無視)
+        - git branch -D <ローカルブランチ名>
+      - リモートブランチの一覧を表示
+        - git branch --remote
+      - リモートブランチを削除
+        - git push --delete origin <リモートブランチ名>
+      - masterで作業し(ブランチを作り忘れ)てしまった(コミット前)
+        - git checkout -b working
+      - masterで作業し(ブランチを作り忘れ)てしまった(コミット後 すべてブランチへコピー)
+        - git checkout -b working origin/master 
+          git merge master
+          git checkout master
+          git log --oneline
+          git reset --hard <戻したいハッシュ>
+          git log --oneline --all
+      - masterで作業し(ブランチを作り忘れ)てしまった(コミット後 特定の対応のみブランチへコピー)
+        - git checkout -b working origin/master 
+          git log --oneline master 
+          git cherry-pick <master側のハッシュ>
+          git checkout master
+          git log --oneline
+          git reset --hard <戻したいハッシュ>
+          git log --oneline --all
+      - ブランチの作業をmasterへマージ(Confictが発生していない場合)
+        - git checkout master
+        - git merge <マージ元のブランチ>
+      - ブランチの作業をmasterへマージ(マージ元の履歴を引き継がない)(Confictが発生している場合)
+        - git checkout master
+        - git merge <マージ元のブランチ>
+        - git status
+        - vi <Conflictの発生しているファイル>
+        - git add <Conflictを解消したファイル>
+        - git commit -m "[merge]fixed conflict" -m "" -m "マージの説明(機能説明、ハッシュ等)"
+      - ブランチの作業をmasterへマージ(マージ元の履歴を引き継ぐ)(Confictが発生している場合)
+        - git checkout master
+        - git merge --no-ff <マージ元のブランチ>
+        - git status
+        - vi <Conflictの発生しているファイル>
+        - git add <Conflictを解消したファイル>
+        - git commit -m "[merge]fixed conflict" 
+      - masterの更新をブランチへ反映
+        - git pull
+      - ブランチ切り替えができない(Changes not staged for commit)
+        - git stash
+      - ブランチ切り替えができない(編集ファイルごと初期化)(Changes not staged for commit)
+        - git checkout .
+      - ブランチ切り替えができない(Untrackd files)
+        - git clean -f
     - global関係
       - リポジトリのURL確認
         - git remote -v
