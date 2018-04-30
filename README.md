@@ -74,17 +74,6 @@
     git clone git@github.com:codepublic24/Labo1.git
     ```
 
-  - **[Markdown]**
-    - エスケープ
-      - 「\」をMarkdownの前につけることでMarkdownを無効化
-    - 参照
-      - MarkdownページのURLに「.md」をつけると記法が見れる
-    - テーブル
-      - |左揃え|中央揃え|右揃え|
-        |:---|:---:|--:|
-        |align-left|align-center|align-right|
-
-
 ## Anything Else
 
 - *memo*
@@ -106,7 +95,7 @@
         - git diff -- <ファイルパス>
       - 確認(git addした後)
         - git diff --cached
-      - 確認(コミット済み)
+      - 確認(特定のコミットの差分)
         - git show <ハッシュ>
     - commit関係
       - １行ログ
@@ -115,6 +104,18 @@
         - git commit -m "コメント" -- <ファイルパス１>  <ファイルパス２>
       - ３行ログ
         - git commit -m "コメント" -m "" -m "詳細説明"
+    - reset/reflog関係(@^=HEAD^=HEADから一つ前)
+      - 最後のコミットを削除(変更部分は残したまま)
+        - git reset --soft @^
+      - 最後のコミットを削除(変更部分も消す)
+        - git reset --hard @^
+      - 特定のコミットまで削除(指定のコミットは消えない、変更部分は残したまま)
+        - git reset --soft <ハッシュ>
+      - 特定のコミットまで削除(指定のコミットは消えない、変更部分も消す)
+        - git reset --hard <ハッシュ>
+      - 間違ってresetした場合(HEAD@{1}=直前の操作)
+        - git reflog
+          git reset <シンボル>
     - log関係
       - 簡易表示
         - git log --oneline
@@ -154,6 +155,16 @@
         - [ここを参照](https://github.com/github/gitignore/tree/master/Global)
     - hook関係
       - リポジトリ内の[Settings] - [Webhooks]
+
+  - **[Markdown]**
+    - エスケープ
+      - 「\」をMarkdownの前につけることでMarkdownを無効化
+    - 参照
+      - MarkdownページのURLに「.md」をつけると記法が見れる
+    - テーブル
+      - |左揃え|中央揃え|右揃え|
+        |:---|:---:|--:|
+        |align-left|align-center|align-right|
 
 
 ## Author
