@@ -130,7 +130,8 @@
       - ツリー表示(ローカルのすべて)
         - git log --oneline --graph --decorate --all
     - rebase関係
-      - 修正したいハッシュ＋１を指定
+      - 修正したいハッシュ＋１を指定  
+        fixup(msg破棄)/squas(msg統合)は直前のハッシュに統合
         - git rebase -i <ハッシュ>
       - 中止
         - git rebase --abort
