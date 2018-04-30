@@ -135,6 +135,8 @@
         - git log --oneline --all
       - ツリー表示(ローカルのすべて)
         - git log --oneline --graph --decorate --all
+      - ツリー表示(詳細)(ローカルのすべて)
+        - git log --oneline --graph --decorate --all -p
     - rebase関係
       - 修正したいハッシュ＋１を指定  
         fixup(msg破棄)/squas(msg統合)は直前のハッシュに統合
