@@ -205,22 +205,22 @@
           git reset --hard <戻したいハッシュ>
           git log --oneline --all
       - ブランチの作業をmasterへマージ(Confictが発生していない場合)
-        - git checkout master
-        - git merge <マージ元のブランチ>
+        - git checkout master  
+          git merge <マージ元のブランチ>
       - ブランチの作業をmasterへマージ(マージコミットを作らない)(Confictが発生している場合)
         - git checkout master
-        - git merge --ff <マージ元のブランチ>
-        - git status
-        - vi <Conflictの発生しているファイル>
-        - git add <Conflictを解消したファイル>
-        - git commit -m "[merge]fixed conflict" -m "" -m "マージの説明(機能説明、ハッシュ等)"
+          git merge --ff <マージ元のブランチ>  
+          git status  
+          vi <Conflictの発生しているファイル>  
+          git add <Conflictを解消したファイル>  
+          git commit -m "[merge]fixed conflict" -m "" -m "マージの説明(機能説明、ハッシュ等)"
       - ブランチの作業をmasterへマージ(マージコミットを作る)(Confictが発生している場合)
         - git checkout master
-        - git merge --no-ff <マージ元のブランチ>
-        - git status
-        - vi <Conflictの発生しているファイル>
-        - git add <Conflictを解消したファイル>
-        - git commit -m "[merge]fixed conflict" 
+          git merge --no-ff <マージ元のブランチ>  
+          git status  
+          vi <Conflictの発生しているファイル>  
+          git add <Conflictを解消したファイル>  
+          git commit -m "[merge]fixed conflict"
       - masterの更新をブランチへ反映(masterを最新へ、その後rebaseで付け替える)
         - git checkout master  
           git pull origin master  
