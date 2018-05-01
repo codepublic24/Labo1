@@ -27,6 +27,8 @@
     - [Ctrl + Shift + x]押下後、[Whitespace+]をインストール
     - [Ctrl + Shift + p]押下後、[Whitespace+ Config]を実行
       - [davidhouchin.whitespace-plus-0.0.5/config.json]の内容で上書き
+  - [vscode-icon](hhttps://marketplace.visualstudio.com/items?itemName=robertohuertasm.vscode-icons)
+    - [Ctrl + Shift + x]押下後、[vscode-icon]をインストール、再読込
 
 - **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
