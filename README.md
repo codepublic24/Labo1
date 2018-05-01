@@ -93,6 +93,18 @@
     git push -f origin feature-git_flow
     ```
 
+  - 間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残す)
+    ```Bash
+    git revert @^
+    git push -f origin <master or ブランチ名>
+    ```
+
+  - (非推奨)間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残さない)
+    ```Bash
+    git reset --hard @^
+    git push -f origin <master or ブランチ名>
+    ```
+
 ## Anything Else
 
 - *memo*
