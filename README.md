@@ -99,6 +99,15 @@
     - 履歴の編集
       - vi ~/.bash_history
   - **[Git]**
+    - remote関係
+      - リモートのURL確認
+        - git remote -v
+      - ローカルでGit作業して、後からリモートを作成した場合
+        - git remote add origin git@github.com:codepublic24/<WebGUIで作成したリポジトリ名>.git
+      - httpsでclone後、originをsshへ変更
+        - git remote set-url origin git@github.com:codepublic24/Labo1.git
+      - origin という名称で登録されているリモートリポジトリを削除(登録の解除)
+        - git remote rm origin
     - show/diff関係
       - 確認
         - git diff
@@ -257,10 +266,6 @@
       - ブランチ切り替えができない(Untrackd files)
         - git clean -f
     - global関係
-      - リポジトリのURL確認
-        - git remote -v
-      - httpsでclone後、originをsshへ変更
-        - git remote set-url origin git@github.com:codepublic24/Labo1.git
       - 確認
         - git config --global --list
     - ignore関係
