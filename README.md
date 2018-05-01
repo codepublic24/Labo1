@@ -93,6 +93,19 @@
     git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
 
+  - Web上でPRを発行、作業実施
+    - タイトルに[wip]作業説明
+    - 本文にチェックボックス＜[ ] 作業内容＞や箇条書きで作業を記載
+    - PRを発行
+    - 作業実施、コミット、PUSH前にリベース もしくは --amendで上書きしていく
+    ```Bash
+    git commit -a -m "[add]分割した作業名"
+    git log --oneline | grep wip
+    git rebase -i <wipコミットのハッシュ>
+    (wipの次のコミットをsquashでまとめる、以外も必要であればまとめる)
+    ```
+    - PRを修正
+
   - 間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残す)
     ```Bash
     git revert @^
