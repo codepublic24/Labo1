@@ -97,12 +97,11 @@
     - タイトルに[wip]作業説明
     - 本文にチェックボックス＜[ ] 作業内容＞や箇条書きで作業を記載
     - PRを発行
-    - 作業実施、コミット、PUSH前にリベース もしくは --amendで上書きしていく
+    - 作業実施、コミット、PUSH前にリベースでwipを消す もしくは --amendで上書きしていく
     ```Bash
     git commit -a -m "[add]分割した作業名"
-    git log --oneline | grep wip
-    git rebase -i <wipコミットのハッシュ>
-    (wipの次のコミットをsquashでまとめる、以外も必要であればまとめる)
+    git rebase -i <@~{wip含めたコミット回数}>
+    git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
     - PRを修正
 
