@@ -85,6 +85,14 @@
     git clone git@github.com:codepublic24/Labo1.git
     ```
 
+  - Github Flowに従って開発(wip=work in progress=作業中)
+    ```Bash
+    git checkout -b feature-git_flow
+    git branch
+    git commit --allow-empty -m "[wip]トピックブランチの簡易説明"
+    git push -f origin feature-git_flow
+    ```
+
 ## Anything Else
 
 - *memo*
