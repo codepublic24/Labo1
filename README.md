@@ -314,6 +314,11 @@
         |:---|:---:|--:|
         |align-left|align-center|align-right|
 
+  - **[Cmd]**
+    - Windowsコマンドラインの文字コードをUTF8へ
+      - chcp 65001
+    - Windowsコマンドラインの文字コードをSHIFT-JISへ
+      - chcp 932
 
 ## Author
 
