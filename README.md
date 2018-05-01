@@ -85,25 +85,25 @@
     git clone git@github.com:codepublic24/Labo1.git
     ```
 
-  - Github Flowに従って開発(wip=work in progress=作業中)
+  - Github Flowに従ってPRの作成(wip=work in progress=作業中)
     ```Bash
-    git checkout -b feature-git_flow
+    git checkout -b <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     git branch
     git commit --allow-empty -m "[wip]トピックブランチの簡易説明"
-    git push -f origin feature-git_flow
+    git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
 
-  - 間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残す)
+  - Web上でPRを発行、作業実施
+    - タイトルに[wip]作業説明
+    - 本文にチェックボックス＜[ ] 作業内容＞や箇条書きで作業を記載
+    - PRを発行
+    - 作業実施、コミット、PUSH前にリベースでwipを消す もしくは --amendで上書きしていく
     ```Bash
-    git revert @^
-    git push -f origin <master or ブランチ名>
+    git commit -a -m "[add]分割した作業名"
+    git rebase -i <@~{wip含めたコミット回数}>
+    git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
-
-  - (非推奨)間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残さない)
-    ```Bash
-    git reset --hard @^
-    git push -f origin <master or ブランチ名>
-    ```
+    - PRを修正
 
 ## Anything Else
 
@@ -242,6 +242,12 @@
         - git branch --remote
       - リモートブランチを削除
         - git push --delete origin <リモートブランチ名>
+      - 間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残す)
+        - git revert @^
+        - git push -f origin <master or ブランチ名>
+      - (非推奨)間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残さない)
+        - git reset --hard @^
+        - git push -f origin <master or ブランチ名>
       - masterで作業し(ブランチを作り忘れ)てしまった(コミット前)
         - git checkout -b working
       - masterで作業し(ブランチを作り忘れ)てしまった(コミット後 すべてブランチへコピー)
