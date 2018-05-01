@@ -106,18 +106,6 @@
     ```
     - PRを修正
 
-  - 間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残す)
-    ```Bash
-    git revert @^
-    git push -f origin <master or ブランチ名>
-    ```
-
-  - (非推奨)間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残さない)
-    ```Bash
-    git reset --hard @^
-    git push -f origin <master or ブランチ名>
-    ```
-
 ## Anything Else
 
 - *memo*
@@ -255,6 +243,12 @@
         - git branch --remote
       - リモートブランチを削除
         - git push --delete origin <リモートブランチ名>
+      - 間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残す)
+        - git revert @^
+        - git push -f origin <master or ブランチ名>
+      - (非推奨)間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残さない)
+        - git reset --hard @^
+        - git push -f origin <master or ブランチ名>
       - masterで作業し(ブランチを作り忘れ)てしまった(コミット前)
         - git checkout -b working
       - masterで作業し(ブランチを作り忘れ)てしまった(コミット後 すべてブランチへコピー)
