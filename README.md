@@ -85,12 +85,12 @@
     git clone git@github.com:codepublic24/Labo1.git
     ```
 
-  - Github Flowに従って開発(wip=work in progress=作業中)
+  - Github Flowに従ってPRの作成(wip=work in progress=作業中)
     ```Bash
-    git checkout -b feature-git_flow
+    git checkout -b <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     git branch
     git commit --allow-empty -m "[wip]トピックブランチの簡易説明"
-    git push -f origin feature-git_flow
+    git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
 
   - 間違ってコミットしてPUSHしてしまった場合(戻したことを履歴として残す)
