@@ -115,8 +115,9 @@
       - Ctrl + Shift + p
     - 選択部分のコマンド実行
       - Ctrl + Shift + P, t, r, s
-    - mdファイルのプレビュー
+    - mdファイルのプレビュー(別パネル、別タブ)
       - Ctrl + k, v
+      - Ctrl + Shift + v
   - **[Bash]**
     - 履歴の編集
       - vi ~/.bash_history
