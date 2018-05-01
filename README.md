@@ -51,7 +51,8 @@
 
 - **Gitクライアントの設定**  
    (コマンドを選択してコマンドパレットでtrsを入力すると楽)
-  - ユーザー情報の設定
+  - ユーザー情報の設定  
+    (クローンしたリポジトリのみ違うアカウントの場合はglobalをはずす)
     ```Bash
     git config --global user.email 'メールアドレス'
     git config --global user.name '名前'
