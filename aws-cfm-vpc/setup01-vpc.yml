@@ -1,19 +1,25 @@
 AWSTemplateFormatVersion: '2010-09-09'
-
+#
+# [Description:]
+#   Create VPC Only.
+#  [Usage]
+#    aws cloudformation create-stack --stack-name <cfm-unique-name> --template-body file://setup01-vpc.yml
+#  [Example]
+#    ---Initialize setting
+#    export AWS_DEFAULT_PROFILE=<profile_name>
+#    cd <this yaml file path>
+#
+#    ---When validation template
+#    aws cloudformation validate-template --template-body file://setup01-vpc.yml
+#
+#    ---When create stack
+#    aws cloudformation create-stack --stack-name cfm-test1 --template-body file://setup01-vpc.yml
+#
+#    ---When delete stack
+#    aws cloudformation delete-stack --stack-name cfm-test1
+#
 Description:
-  Create VPC Only.
-  [Usage]
-    aws cloudformation create-stack --stack-name <cfm-unique-name> --parameters ParameterKey=ArgsVpcName,ParameterValue=<Vpc-Name> --template-body file://setup01-vpc.yml
-  [Example]
-    cd <this yaml file path>
-    aws cloudformation create-stack --stack-name cfm-test1 --parameters ParameterKey=ArgsVpcName,ParameterValue=Vpc-Test1 --template-body file://setup01-vpc.yml
-    aws cloudformation delete-stack --stack-name cfm-test1
-
-Parameters:
-  ArgsVpcPrefixName:
-    Type: String
-    Description: VPC tag args CLI.
-    Default: default
+  CloudFormation Template
 
 Mappings:
   StackConfig:
@@ -21,7 +27,6 @@ Mappings:
       CIDR: 10.0.0.0/16
 
 Resources:
-  #common
   MainVPC:
     Type: AWS::EC2::VPC
     Properties:
@@ -31,12 +36,10 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: !Sub
-            - "${ArgsVpcPrefixName}-vpc"
-            - { ArgsVpcPrefixName: !Ref ArgsVpcPrefixName }
+          Value: !Sub "${AWS::StackName}-vpc"
 
 Outputs:
-  VPCId:
+  ExpParamVpcId:
     Value: !Ref MainVPC
     Export:
-      Name: !Sub "${AWS::StackName}-vpc"
+      Name: !Sub "${AWS::StackName}-ExpParamVpcId"
