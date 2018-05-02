@@ -55,11 +55,11 @@
 - **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
     - New repositryを押下  
-      ![new repository](https://github.com/codepublic24/static-image/blob/master/img-gtihub-01.JPG)
+      ![new repository](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-01.JPG)
     - リポジトリ名を設定  
-      ![repository name](https://github.com/codepublic24/static-image/blob/master/img-gtihub-02.JPG)
+      ![repository name](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-02.JPG)
     - READMEを自動でつくる＋ライセンスの設定  
-      ![initialize](https://github.com/codepublic24/static-image/blob/master/img-gtihub-03.JPG)
+      ![initialize](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-03.JPG)
 
 - **VSCodeの設定変更１**
   - 統合ターミナルをGitBashに変更  
@@ -98,10 +98,10 @@
     clip < ~/.ssh/id_rsa.pub
     ```
   - GitHubのアカウント設定から作成した公開鍵を設定  
-    ![account setting1](https://github.com/codepublic24/static-image/blob/master/img-gtihub-04.JPG)  
-    ![account setting2](https://github.com/codepublic24/static-image/blob/master/img-gtihub-05.JPG)  
-    ![account setting3](https://github.com/codepublic24/static-image/blob/master/img-gtihub-06.JPG)  
-    ![account setting4](https://github.com/codepublic24/static-image/blob/master/img-gtihub-07.JPG)  
+    ![account setting1](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-04.JPG)  
+    ![account setting2](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-05.JPG)  
+    ![account setting3](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-06.JPG)  
+    ![account setting4](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-07.JPG)  
 
   - リポジトリのクローン
     ```Bash
@@ -117,11 +117,11 @@
     git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
     GitHubのWebページへ移動  
-    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/img-gtihub-08.JPG)  
+    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-08.JPG)  
     PRを作成  
-    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/img-gtihub-09.JPG)  
+    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-09.JPG)  
     タイトルに[wip]＋作業説明を記載  
-    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/img-gtihub-10.JPG)  
+    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-10.JPG)  
     作業開始PRを発行  
     ```Bash
     作業実施、コミット、PUSH前にリベースでwipをDrop or (#で)コメント化  
