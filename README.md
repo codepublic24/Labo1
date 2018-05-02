@@ -43,6 +43,11 @@
       - [davidhouchin.whitespace-plus-0.0.5/config.json]の内容で上書き
   - [vscode-icon](hhttps://marketplace.visualstudio.com/items?itemName=robertohuertasm.vscode-icons)
     - [Ctrl + Shift + x]押下後、[vscode-icon]をインストール、再読込
+  - [Python(3.5 or 3.6)]
+    - [3.5.3はこちら](https://www.python.org/downloads/release/python-353/)
+      [3.6.5はこちら](https://www.python.org/downloads/release/python-365/)
+    - pipのバージョンアップ
+      - python -m pip install --upgrade pip
 
 - **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
