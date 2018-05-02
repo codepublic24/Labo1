@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: '2010-09-09'
+#
+# [Description:]
+#   Create EC2 Instance.
+#  [Usage]
+#    aws cloudformation create-stack --stack-name <cfm-unique-name> --parameters ParameterKey=ArgKeyPair,ParameterValue=<KeyPair-Name> --template-body file://setup01-ec2.yml
+#  [Example]
+#    ---Initialize setting
+#    export AWS_DEFAULT_PROFILE=<profile_name>
+#    cd <this yaml file path>
+#
+#    ---When validation template
+#    aws cloudformation validate-template --template-body file://setup01-ec2.yml
+#
+#    ---When create stack
+#    aws cloudformation create-stack --stack-name cfm-ec2-test1 --parameters ParameterKey=ArgKeyPair,ParameterValue=KeyPairName --template-body file://setup01-ec2.yml
+#
+#    ---When delete stack
+#    aws cloudformation delete-stack --stack-name cfm-ec2-test1
+#
+Description:
+  CloudFormation Template
+
+Parameters:
+  ArgKeyPair:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: KeyPairName
+
+Mappings:
+  StackConfig:
+    EC2:
+      #Amazon Linux 2 LTS Candidate 2 AMI (HVM), SSD Volume Type - ami-8fbab2f3
+      #Ubuntu Server 16.04 LTS (HVM), SSD Volume Type - ami-0d74386b
+      #Microsoft Windows Server 2016 Base - ami-0e809272
+      #CentOS Linux 7 x86_64 HVM EBS 1801_01 - ami-25bd2743
+      #CentOS Linux 7 x86_64 HVM EBS ENA 1803_01 - ami-91c4d3ed
+      #Debian GNU/Linux 9 (Stretch)-hvm-x86_64-gp2-2018-04-09-292 - ami-f2e2f18e
+      ImageId: ami-0d74386b
+      InstanceType: t2.micro
+
+Resources:
+  WebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap
+        - StackConfig
+        - EC2
+        - ImageId
+      InstanceType: !FindInMap
+        - StackConfig
+        - EC2
+        - InstanceType
+      KeyName: !Ref ArgKeyPair
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-ec2-web"
+
+Outputs:
+  ExpParamWebServerPubIp:
+    Value: !GetAtt WebServer.PublicIp
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamWebServerPubIp"
+  ExpParamWebServerPubDns:
+    Value: !GetAtt WebServer.PublicDnsName
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamWebServerPubDns"
+  ExpParamWebServerPriIp:
+    Value: !GetAtt WebServer.PrivateIp
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamWebServerPriIp"
+  ExpParamWebServerPriDns:
+    Value: !GetAtt WebServer.PrivateDnsName
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamWebServerPriDns"
