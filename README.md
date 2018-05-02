@@ -27,6 +27,7 @@
   - [GitHub](https://github.com/join?source=header-home/)
   - [Twitter](https://twitter.com/signup?lang=ja)
   - [Domain:お名前.com](https://px.a8.net/svt/ejp?a8mat=2TNCI2+40OCS2+50+2HFY7M)
+  - [AWS](https://console.aws.amazon.com/console/home)
 
 - **ソフトウェアのインストール**
   - [Visual Studio Code(以後、VSCode)](https://code.visualstudio.com/download)
@@ -51,6 +52,26 @@
         (pipがない場合：  
          curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"  
          python get-pip.py)
+  - [AWS CLI](https://docs.aws.amazon.com/ja_jp/streams/latest/dev/kinesis-tutorial-cli-installation.html)
+    - Pythonのpipを使用
+      - pip install awscli
+    - AWSコンソールでIAMを作成 Credential情報を取得しておく
+      - ![aws init01](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-01.JPG)  
+        AWSサービスで「IAM」を検索、IAMのページへ遷移  
+        ![aws init02](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-02.JPG)  
+        ![aws init03](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-03.JPG)  
+        管理者グループの作成  
+        ![aws init04](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-04.JPG)  
+        管理者グループにフルコントロールの権限を付与  
+        ![aws init05](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-05.JPG)  
+        ![aws init06](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-06.JPG)  
+        管理者グループにIAMユーザーを追加  
+        ![aws init07](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-07.JPG)  
+        Credentialを保存
+    - インストール後Credentialの設定(誤接続を防ぐためProfileを使用)
+      - aws configure --profile <わかりやすく打ちやすいプロファイル名>  
+        ![aws init08](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-08.JPG)  
+        保存していたCredential情報を入力
 
 - **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
