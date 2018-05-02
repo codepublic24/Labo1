@@ -142,6 +142,9 @@
         - git remote set-url origin git@github.com:codepublic24/Labo1.git
       - origin という名称で登録されているリモートリポジトリを削除(登録の解除)
         - git remote rm origin
+      - git branch -aで消したはずのリモートリポジトリが表示される
+        - git remote prune origin
+        - git branch -a
     - show/diff関係
       - 確認
         - git diff
