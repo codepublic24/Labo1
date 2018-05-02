@@ -110,6 +110,13 @@
     ```
     PRを修正して、マージPRを発行
     あとはマージ担当(管理者)が作業
+    ```Bash
+    マージ完了後、ローカルリポジトリを削除、リモートはマージ担当(管理者)が削除
+    git branch --delete <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
+    git remote prune origin
+    git branch -a
+    ```
+    
 
 ## Anything Else
 
