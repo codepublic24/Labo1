@@ -8,11 +8,11 @@
 実験中プロジェクトを置いています。
 
 ## Feature
-  - davidhouchin.whitespace-plus-0.0.5
+  - [x] davidhouchin.whitespace-plus-0.0.5
     - VSCode拡張：スペース、タブの色付け
-  - git-foresta
+  - [x] git-foresta
     - Perlスクリプト：gitツリーをCLIで表示できる
-  - html5_simple_template
+  - [x] html5_simple_template
     - htmlのスケルトンテンプレート
 
 ## Work Flow
