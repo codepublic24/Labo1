@@ -13,10 +13,10 @@ AWSTemplateFormatVersion: '2010-09-09'
 #    aws cloudformation validate-template --template-body file://setup01-vpc.yml
 #
 #    ---When create stack
-#    aws cloudformation create-stack --stack-name cfm-test1 --template-body file://setup01-vpc.yml
+#    aws cloudformation create-stack --stack-name cfm-vpn-test1 --template-body file://setup01-vpc.yml
 #
 #    ---When delete stack
-#    aws cloudformation delete-stack --stack-name cfm-test1
+#    aws cloudformation delete-stack --stack-name cfm-vpn-test1
 #
 Description:
   CloudFormation Template
