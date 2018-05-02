@@ -94,18 +94,22 @@
     git commit --allow-empty -m "[wip]トピックブランチの簡易説明"
     git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
-
-  - Web上でPRを発行、作業実施
-    - タイトルに[wip]作業説明
-    - 本文にチェックボックス＜[ ] 作業内容＞や箇条書きで作業を記載
-    - PRを発行
-    - 作業実施、コミット、PUSH前にリベースでwipを消す もしくは --amendで上書きしていく
+    GitHubのWebページへ移動  
+    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/img-gtihub-08.JPG)  
+    PRを作成  
+    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/img-gtihub-09.JPG)  
+    タイトルに[wip]＋作業説明を記載  
+    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/img-gtihub-10.JPG)  
+    作業開始PRを発行  
     ```Bash
+    作業実施、コミット、PUSH前にリベースでwipをDrop or (#で)コメント化  
+    もしくは --amendで上書きしていく
     git commit -a -m "[add]分割した作業名"
     git rebase -i <@~{wip含めたコミット回数}>
     git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
-    - PRを修正
+    PRを修正して、マージPRを発行
+    あとはマージ担当(管理者)が作業
 
 ## Anything Else
 
