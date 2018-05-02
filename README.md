@@ -14,10 +14,10 @@
     - Perlスクリプト：gitツリーをCLIで表示できる
   - [x] html5_simple_template
     - htmlのスケルトンテンプレート
+  - [ ] aws-cfm-vpc
+    - AWS上にVPCを作成するCloudFprmation設定ファイル
   - [ ] aws-cfm-ec2
     - AWS上にEC2を作成するCloudFprmation設定ファイル
-  - [ ] aws-cfm-vpc
-    - AWS上にVPC、EC2(VPC内)を作成するCloudFprmation設定ファイル
   - [ ] redmine
     - Redmine構成スクリプト
 
