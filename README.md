@@ -48,6 +48,9 @@
       [3.6.5はこちら](https://www.python.org/downloads/release/python-365/)
     - pipのバージョンアップ
       - python -m pip install --upgrade pip
+        (pipがない場合：  
+         curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"  
+         python get-pip.py)
 
 - **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
