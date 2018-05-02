@@ -1,4 +1,4 @@
-# labo1
+# Labo1
 
 実験用プロジェクト(host:Windows)
 
