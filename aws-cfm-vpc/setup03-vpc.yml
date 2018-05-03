@@ -31,13 +31,15 @@ Mappings:
       CIDR: 10.0.1.0/24
 
 Resources:
-  MainVPC:
+  VPC:
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: !FindInMap
         - StackConfig
         - VPC
         - CIDR
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-vpc"
