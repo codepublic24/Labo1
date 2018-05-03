@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+#
+# [Description:]
+#   Create VPC Only.
+#  [Usage]
+#    aws cloudformation create-stack --stack-name <cfm-unique-name> --template-body file://setup01-vpc.yml
+#  [Example]
+#    ---Initialize setting
+#    export AWS_DEFAULT_PROFILE=<profile_name>
+#    cd <this yaml file path>
+#
+#    ---When validation template
+#    aws cloudformation validate-template --template-body file://setup01-vpc.yml
+#
+#    ---When create stack
+#    aws cloudformation create-stack --stack-name cfm-vpn-test1 --template-body file://setup01-vpc.yml
+#
+#    ---When delete stack
+#    aws cloudformation delete-stack --stack-name cfm-vpn-test1
+#
+Description:
+  CloudFormation Template
+
+Mappings:
+  StackConfig:
+    VPC:
+      CIDR: 10.0.0.0/16
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !FindInMap
+        - StackConfig
+        - VPC
+        - CIDR
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-vpc"
+
+Outputs:
+  ExpParamVpcId:
+    Value: !Ref VPC
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamVpcId"
