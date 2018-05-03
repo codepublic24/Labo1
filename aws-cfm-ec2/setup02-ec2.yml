@@ -1,59 +1,84 @@
 AWSTemplateFormatVersion: '2010-09-09'
 #
 # [Description:]
-#   Create EC2 Instance in VPC.
+#   Create EC2 Instance.
 #  [Usage]
-#    cd aws-cfm-vpn
-#    aws cloudformation create-stack --stack-name <cfm-unique-name> --template-body file://setup03-vpc.yml
-#    cd aws-cfm-ec2
-#    aws cloudformation create-stack --stack-name <cfm-unique-name> --parameters ParameterKey=ArgKeyPair,ParameterValue=<KeyPair-Name> --template-body file://setup02-ec2.yml
+#    aws cloudformation create-stack 
+#      --template-body file://setup02-ec2.yml
+#      --stack-name <unique-stack-name> 
+#      --parameters 
+#      ParameterKey=ArgProjectName,ParameterValue=<project-name> 
+#      ParameterKey=ArgKeyPairName,ParameterValue=<key-pair-name> 
+#      ParameterKey=ArgAmiImage,ParameterValue=<ami-name> 
+#      ParameterKey=ArgInstanceType,ParameterValue=<instance-type> 
+#
+#  [Appendix]
+#   ami-image
+#    [ami-8fbab2f3] Amazon Linux 2 LTS Candidate 2 AMI (HVM), SSD Volume Type
+#    [ami-0d74386b] Ubuntu Server 16.04 LTS (HVM), SSD Volume Type
+#    [ami-91c4d3ed] CentOS Linux 7 x86_64 HVM EBS 1803_01
+#    [ami-25bd2743] CentOS Linux 7 x86_64 HVM EBS 1801_01
+#    [ami-f2e2f18e] Debian GNU/Linux 9 (Stretch)-hvm-x86_64-gp2-2018-04-09-292
+#    [ami-0e809272] Microsoft Windows Server 2016 Base
+#    [ami-a2b6a2de] Container Linux by CoreOS (Stable)
+#
 #  [Example]
 #    ---Initialize setting
+#    cd <this yaml file path>
 #    export AWS_DEFAULT_PROFILE=<profile_name>
-#    cd ../aws-cfm-vpn
-#    aws cloudformation create-stack --stack-name cfm-vpn-test3 --template-body file://setup03-vpc.yml
-#    cd ../aws-cfm-ec2
-
+#    unset AWS_CFSTACK_ARGS_EC2
+#    export AWS_CFSTACK_ARGS_EC2=$(cat << EOM
+#    --template-body file://setup02-ec2.yml 
+#    --stack-name cf-simplesvr1-02ec2 
+#    --parameters 
+#    ParameterKey=ArgProjectName,ParameterValue=prj-simplesvr1 
+#    ParameterKey=ArgKeyPairName,ParameterValue=KeyPairName 
+#    ParameterKey=ArgAmiImage,ParameterValue=ami-0d74386b 
+#    ParameterKey=ArgInstanceType,ParameterValue=t2.micro 
+#    EOM
+#    )
+#    echo $AWS_CFSTACK_ARGS_VPC
+#
 #    ---When validation template
 #    aws cloudformation validate-template --template-body file://setup02-ec2.yml
 #
 #    ---When create stack
-#    aws cloudformation create-stack --stack-name cfm-ec2-test2 --parameters ParameterKey=ArgKeyPair,ParameterValue=KeyPairName --parameters ParameterKey=ArgVpcStack,ParameterValue=cfm-vpn-test3 --template-body file://setup02-ec2.yml
+#    aws cloudformation create-stack $AWS_CFSTACK_ARGS_VPC
 #
 #    ---When delete stack
-#    aws cloudformation delete-stack --stack-name cfm-ec2-test2
+#    aws cloudformation delete-stack --stack-name cf-simplesvr1-02ec2
 #
 Description:
   CloudFormation Template
 
 Parameters:
-  ArgKeyPair:
+  ArgProjectName:
+    Type: String
+    Default: "prj-default"
+    AllowedPattern: "[0-9a-zA-Z\\-]*"
+  ArgKeyPairName:
     Type: AWS::EC2::KeyPair::KeyName
     Default: KeyPairName
-  ArgVpcStack:
+  ArgAmiImage:
     Type: String
-    Default: ""
-
-Mappings:
-  StackConfig:
-    EC2:
-      #Amazon Linux 2 LTS Candidate 2 AMI (HVM), SSD Volume Type - ami-8fbab2f3
-      #Ubuntu Server 16.04 LTS (HVM), SSD Volume Type - ami-0d74386b
-      #Microsoft Windows Server 2016 Base - ami-0e809272
-      #CentOS Linux 7 x86_64 HVM EBS 1801_01 - ami-25bd2743
-      #CentOS Linux 7 x86_64 HVM EBS ENA 1803_01 - ami-91c4d3ed
-      #Debian GNU/Linux 9 (Stretch)-hvm-x86_64-gp2-2018-04-09-292 - ami-f2e2f18e
-      ImageId: ami-0d74386b
-      InstanceType: t2.micro
+    Default: ami-8fbab2f3
+  ArgInstanceType:
+    Type: String
+    Default: t2.nano
 
 Resources:
-  WebServerSecurityGroup:
+  EC2WebSG:
     Type: AWS::EC2::SecurityGroup
     Properties:
       VpcId: 
         Fn::ImportValue:
-          !Sub "${ArgVpcStack}-ExpParamVpcId"
-      GroupDescription: !Sub "${AWS::StackName}-ec2-web-sg"
+          !Sub 
+            - "Export-${prjname}-VpcId"
+            - { prjname: !Ref ArgProjectName }
+      GroupDescription: 
+        !Sub 
+          - "${prjname}-ec2-web-sg"
+          - { prjname: !Ref ArgProjectName }
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
@@ -65,45 +90,54 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: !Sub "${AWS::StackName}-ec2-web-sg"
-  WebServer:
+          Value: !Sub 
+            - "${prjname}-ec2-web-sg"
+            - { prjname: !Ref ArgProjectName }
+
+  EC2WebSrv:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: !FindInMap
-        - StackConfig
-        - EC2
-        - ImageId
-      InstanceType: !FindInMap
-        - StackConfig
-        - EC2
-        - InstanceType
+      ImageId: !Ref ArgAmiImage
+      InstanceType: !Ref ArgInstanceType
+      KeyName: !Ref ArgKeyPairName
       NetworkInterfaces:
         - AssociatePublicIpAddress: true
           DeviceIndex: 0
           GroupSet: 
-           - !Ref WebServerSecurityGroup
+           - !Ref EC2WebSG
           SubnetId: 
             Fn::ImportValue:
-              !Sub "${ArgVpcStack}-ExpParamPublicSubnet"
-      KeyName: !Ref ArgKeyPair
+              !Sub 
+                - "Export-${prjname}-PublicSubnet"
+                - { prjname: !Ref ArgProjectName }
       Tags:
         - Key: Name
-          Value: !Sub "${AWS::StackName}-ec2-web"
+          Value: !Sub 
+            - "${prjname}-ec2-web"
+            - { prjname: !Ref ArgProjectName }
 
 Outputs:
-  ExpParamWebServerPubIp:
-    Value: !GetAtt WebServer.PublicIp
+  ExportParamWebServerPubIp:
+    Value: !GetAtt EC2WebSrv.PublicIp
     Export:
-      Name: !Sub "${AWS::StackName}-ExpParamWebServerPubIp"
-  ExpParamWebServerPubDns:
-    Value: !GetAtt WebServer.PublicDnsName
+      Name: !Sub 
+        - "Export-${prjname}-ec2-web-pub-ip"
+        - { prjname: !Ref ArgProjectName }
+  ExportParamWebServerPubDns:
+    Value: !GetAtt EC2WebSrv.PublicDnsName
     Export:
-      Name: !Sub "${AWS::StackName}-ExpParamWebServerPubDns"
-  ExpParamWebServerPriIp:
-    Value: !GetAtt WebServer.PrivateIp
+      Name: !Sub 
+        - "Export-${prjname}-ec2-web-pub-dns"
+        - { prjname: !Ref ArgProjectName }
+  ExportParamWebServerPriIp:
+    Value: !GetAtt EC2WebSrv.PrivateIp
     Export:
-      Name: !Sub "${AWS::StackName}-ExpParamWebServerPriIp"
-  ExpParamWebServerPriDns:
-    Value: !GetAtt WebServer.PrivateDnsName
+      Name: !Sub 
+        - "Export-${prjname}-ec2-web-pri-ip"
+        - { prjname: !Ref ArgProjectName }
+  ExportParamWebServerPriDns:
+    Value: !GetAtt EC2WebSrv.PrivateDnsName
     Export:
-      Name: !Sub "${AWS::StackName}-ExpParamWebServerPriDns"
+      Name: !Sub 
+        - "Export-${prjname}-ec2-web-pri-dns"
+        - { prjname: !Ref ArgProjectName }
