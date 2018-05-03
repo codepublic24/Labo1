@@ -54,14 +54,14 @@ Resources:
   AttachGateway:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
-      VpcId: !Ref MainVPC
+      VpcId: !Ref VPC
       InternetGatewayId: !Ref InternetGateway
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
     DependsOn: AttachGateway
     Properties:
-      VpcId: !Ref MainVPC
+      VpcId: !Ref VPC
       Tags:
       - Key: Name
         Value: !Sub "${AWS::StackName}-pub-rt-tbl"
@@ -84,7 +84,7 @@ Resources:
         - CIDR
       MapPublicIpOnLaunch: 'true'
       AvailabilityZone: 'ap-northeast-1a'
-      VpcId: !Ref MainVPC
+      VpcId: !Ref VPC
       Tags:
       - Key: Name
         Value: !Sub "${AWS::StackName}-pub-sub"
@@ -99,7 +99,7 @@ Resources:
         - CIDR
       MapPublicIpOnLaunch: 'false'
       AvailabilityZone: 'ap-northeast-1a'
-      VpcId: !Ref MainVPC
+      VpcId: !Ref VPC
       Tags:
       - Key: Name
         Value: !Sub "${AWS::StackName}-pri-sub"
@@ -112,7 +112,7 @@ Resources:
 
 Outputs:
   ExpParamVpcId:
-    Value: !Ref MainVPC
+    Value: !Ref VPC
     Export:
       Name: !Sub "${AWS::StackName}-ExpParamVpcId"
   ExpParamPublicSubnet:
