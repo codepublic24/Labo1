@@ -10,6 +10,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 #      ParameterKey=ArgProjectName,ParameterValue=<project-name> 
 #      ParameterKey=ArgVpcCidr,ParameterValue=<cidr> 
 #      ParameterKey=ArgPublicSubnetCidr,ParameterValue=<cidr> 
+#      ParameterKey=ArgPrivateSubnetCidr,ParameterValue=<cidr> 
 #  [Example]
 #    ---Initialize setting
 #    cd <this yaml file path>
