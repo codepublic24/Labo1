@@ -1,0 +1,109 @@
+AWSTemplateFormatVersion: '2010-09-09'
+#
+# [Description:]
+#   Create EC2 Instance in VPC.
+#  [Usage]
+#    cd aws-cfm-vpn
+#    aws cloudformation create-stack --stack-name <cfm-unique-name> --template-body file://setup03-vpc.yml
+#    cd aws-cfm-ec2
+#    aws cloudformation create-stack --stack-name <cfm-unique-name> --parameters ParameterKey=ArgKeyPair,ParameterValue=<KeyPair-Name> --template-body file://setup02-ec2.yml
+#  [Example]
+#    ---Initialize setting
+#    export AWS_DEFAULT_PROFILE=<profile_name>
+#    cd ../aws-cfm-vpn
+#    aws cloudformation create-stack --stack-name cfm-vpn-test3 --template-body file://setup03-vpc.yml
+#    cd ../aws-cfm-ec2
+
+#    ---When validation template
+#    aws cloudformation validate-template --template-body file://setup02-ec2.yml
+#
+#    ---When create stack
+#    aws cloudformation create-stack --stack-name cfm-ec2-test2 --parameters ParameterKey=ArgKeyPair,ParameterValue=KeyPairName --parameters ParameterKey=ArgVpcStack,ParameterValue=cfm-vpn-test3 --template-body file://setup02-ec2.yml
+#
+#    ---When delete stack
+#    aws cloudformation delete-stack --stack-name cfm-ec2-test2
+#
+Description:
+  CloudFormation Template
+
+Parameters:
+  ArgKeyPair:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: KeyPairName
+  ArgVpcStack:
+    Type: String
+    Default: ""
+
+Mappings:
+  StackConfig:
+    EC2:
+      #Amazon Linux 2 LTS Candidate 2 AMI (HVM), SSD Volume Type - ami-8fbab2f3
+      #Ubuntu Server 16.04 LTS (HVM), SSD Volume Type - ami-0d74386b
+      #Microsoft Windows Server 2016 Base - ami-0e809272
+      #CentOS Linux 7 x86_64 HVM EBS 1801_01 - ami-25bd2743
+      #CentOS Linux 7 x86_64 HVM EBS ENA 1803_01 - ami-91c4d3ed
+      #Debian GNU/Linux 9 (Stretch)-hvm-x86_64-gp2-2018-04-09-292 - ami-f2e2f18e
+      ImageId: ami-0d74386b
+      InstanceType: t2.micro
+
+Resources:
+  WebServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: 
+        Fn::ImportValue:
+          !Sub "${ArgVpcStack}-ExpParamVpcId"
+      GroupDescription: !Sub "${AWS::StackName}-ec2-web-sg"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-ec2-web-sg"
+  WebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap
+        - StackConfig
+        - EC2
+        - ImageId
+      InstanceType: !FindInMap
+        - StackConfig
+        - EC2
+        - InstanceType
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          DeviceIndex: 0
+          GroupSet: 
+           - !Ref WebServerSecurityGroup
+          SubnetId: 
+            Fn::ImportValue:
+              !Sub "${ArgVpcStack}-ExpParamPublicSubnet"
+      KeyName: !Ref ArgKeyPair
+      Tags:
+        - Key: Name
+          Value: !Sub "${AWS::StackName}-ec2-web"
+
+Outputs:
+  ExpParamWebServerPubIp:
+    Value: !GetAtt WebServer.PublicIp
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamWebServerPubIp"
+  ExpParamWebServerPubDns:
+    Value: !GetAtt WebServer.PublicDnsName
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamWebServerPubDns"
+  ExpParamWebServerPriIp:
+    Value: !GetAtt WebServer.PrivateIp
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamWebServerPriIp"
+  ExpParamWebServerPriDns:
+    Value: !GetAtt WebServer.PrivateDnsName
+    Export:
+      Name: !Sub "${AWS::StackName}-ExpParamWebServerPriDns"
