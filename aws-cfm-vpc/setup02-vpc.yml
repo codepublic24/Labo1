@@ -3,51 +3,76 @@ AWSTemplateFormatVersion: '2010-09-09'
 # [Description:]
 #   Create VPC public.
 #  [Usage]
-#    aws cloudformation create-stack --stack-name <cfm-unique-name> --template-body file://setup02-vpc.yml
+#    aws cloudformation create-stack 
+#      --template-body file://setup02-vpc.yml
+#      --stack-name <unique-stack-name> 
+#      --parameters 
+#      ParameterKey=ArgProjectName,ParameterValue=<project-name> 
+#      ParameterKey=ArgVpcCidr,ParameterValue=<cidr> 
+#      ParameterKey=ArgPublicSubnetCidr,ParameterValue=<cidr> 
 #  [Example]
 #    ---Initialize setting
-#    export AWS_DEFAULT_PROFILE=<profile_name>
 #    cd <this yaml file path>
+#    export AWS_DEFAULT_PROFILE=<profile_name>
+#    unset AWS_CFSTACK_ARGS_VPC
+#    export AWS_CFSTACK_ARGS_VPC=$(cat << EOM
+#    --template-body file://setup02-vpc.yml 
+#    --stack-name cf-simplesvr1-01vpn 
+#    --parameters 
+#    ParameterKey=ArgProjectName,ParameterValue=prj-simplesvr1 
+#    ParameterKey=ArgVpcCidr,ParameterValue=10.0.0.0/16 
+#    ParameterKey=ArgPublicSubnetCidr,ParameterValue=10.0.1.0/24 
+#    EOM
+#    )
+#    echo $AWS_CFSTACK_ARGS_VPC
 #
 #    ---When validation template
 #    aws cloudformation validate-template --template-body file://setup02-vpc.yml
 #
 #    ---When create stack
-#    aws cloudformation create-stack --stack-name cfm-vpn-test2 --template-body file://setup02-vpc.yml
+#    aws cloudformation create-stack $AWS_CFSTACK_ARGS_VPC
 #
 #    ---When delete stack
-#    aws cloudformation delete-stack --stack-name cfm-vpn-test2
+#    aws cloudformation delete-stack --stack-name cf-simplesvr1-01vpn 
 #
 Description:
   CloudFormation Template
 
-Mappings:
-  StackConfig:
-    VPC:
-      CIDR: 10.0.0.0/16
-    PublicSubnet:
-      CIDR: 10.0.1.0/24
+Parameters:
+  ArgProjectName:
+    Type: String
+    Default: "prj-default"
+    AllowedPattern: "[0-9a-zA-Z\\-]*"
+  ArgVpcCidr:
+    Type: String
+    Default: "172.16.0.0/16"
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
+  ArgPublicSubnetCidr:
+    Type: String
+    Default: "172.16.1.0/24"
+    AllowedPattern: "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
 
 Resources:
   VPC:
     Type: AWS::EC2::VPC
     Properties:
-      CidrBlock: !FindInMap
-        - StackConfig
-        - VPC
-        - CIDR
+      CidrBlock: !Ref ArgVpcCidr
       EnableDnsSupport: true
       EnableDnsHostnames: true
       Tags:
         - Key: Name
-          Value: !Sub "${AWS::StackName}-vpc"
+          Value: !Sub 
+            - "${prjname}-vpc"
+            - { prjname: !Ref ArgProjectName }
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
       Tags:
-      - Key: Name
-        Value: !Sub "${AWS::StackName}-igw"
+        - Key: Name
+          Value: !Sub 
+            - "${prjname}-igw"
+            - { prjname: !Ref ArgProjectName }
 
   AttachGateway:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -61,8 +86,10 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       Tags:
-      - Key: Name
-        Value: !Sub "${AWS::StackName}-pub-rt-tbl"
+        - Key: Name
+          Value: !Sub 
+            - "${prjname}-pub-rtb"
+            - { prjname: !Ref ArgProjectName }
 
   PublicRoute:
     Type: AWS::EC2::Route
@@ -76,15 +103,15 @@ Resources:
     Type: AWS::EC2::Subnet
     DependsOn: AttachGateway
     Properties:
-      CidrBlock: !FindInMap
-        - StackConfig
-        - PublicSubnet
-        - CIDR
+      CidrBlock: !Ref ArgPublicSubnetCidr
       MapPublicIpOnLaunch: 'true'
+      AvailabilityZone: 'ap-northeast-1a'
       VpcId: !Ref VPC
       Tags:
-      - Key: Name
-        Value: !Sub "${AWS::StackName}-pub-sub"
+        - Key: Name
+          Value: !Sub 
+            - "${prjname}-pub-subnet"
+            - { prjname: !Ref ArgProjectName }
 
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -93,11 +120,15 @@ Resources:
       RouteTableId: !Ref PublicRouteTable
 
 Outputs:
-  ExpParamVpcId:
+  ExportParamVpcId:
     Value: !Ref VPC
     Export:
-      Name: !Sub "${AWS::StackName}-ExpParamVpcId"
-  ExpParamPublicSubnet:
+      Name: !Sub 
+            - "Export-${prjname}-VpcId"
+            - { prjname: !Ref ArgProjectName }
+  ExportParamPublicSubnet:
     Value: !Ref PublicSubnet
     Export:
-      Name: !Sub "${AWS::StackName}-ExpParamPublicSubnet"
+      Name: !Sub 
+            - "Export-${prjname}-PublicSubnet"
+            - { prjname: !Ref ArgProjectName }
