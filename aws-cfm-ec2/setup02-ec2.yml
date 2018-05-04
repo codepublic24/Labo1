@@ -37,13 +37,13 @@ AWSTemplateFormatVersion: '2010-09-09'
 #    ParameterKey=ArgInstanceType,ParameterValue=t2.micro 
 #    EOM
 #    )
-#    echo $AWS_CFSTACK_ARGS_VPC
+#    echo $AWS_CFSTACK_ARGS_EC2
 #
 #    ---When validation template
 #    aws cloudformation validate-template --template-body file://setup02-ec2.yml
 #
 #    ---When create stack
-#    aws cloudformation create-stack $AWS_CFSTACK_ARGS_VPC
+#    aws cloudformation create-stack $AWS_CFSTACK_ARGS_EC2
 #
 #    ---When delete stack
 #    aws cloudformation delete-stack --stack-name cf-simplesvr1-02ec2
