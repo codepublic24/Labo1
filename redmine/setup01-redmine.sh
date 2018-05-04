@@ -6,11 +6,11 @@
 #    sudo passwd root
 #    
 #    su root
-#    REDMINE_DL_URL=<url>
+#    REDMINE_PLUGIN_DL_URL=<url>
 #    cd /tmp
 #    wget https://github.com/codepublic24/Labo1/blob/master/redmine/setup01-redmine.sh
 #    chmod +x /tmp/setup01-redmine.sh
-#    sed -i".org.1" -e "s/#sudo wget https:\/\/<url>/sudo wget https:\/\/${REDMINE_DL_URL}/g" /tmp/setup01-redmine.sh
+#    sed -i".org.1" -e "s/#sudo wget https:\/\/<url>/sudo wget ${REDMINE_PLUGIN_DL_URL}/g" /tmp/setup01-redmine.sh
 #    /tmp/setup01-redmine.sh
 
 cd /tmp
@@ -226,10 +226,10 @@ sudo mv /var/lib/redmine/plugins/redmine_work_time-0.3.4/ /var/lib/redmine/plugi
 
 #####Edit Url Agile Plugin
 #sudo wget https://<url>/redmine_agile-1_4_6-light.zip -O /tmp/redmine_agile-1_4_6-light.zip
-#sudo unzip /tmp/redmine_agile-1_4_6-light.zip  -d /var/lib/redmine/plugins/
+sudo unzip -o /tmp/redmine_agile-1_4_6-light.zip  -d /var/lib/redmine/plugins/
 #####Edit Url Theme
 #sudo wget https://<url>/circle_theme-2_1_3.zip -O /tmp/circle_theme-2_1_3.zip
-#sudo unzip /tmp/circle_theme-2_1_3.zip -d /var/lib/redmine/public/themes/
+sudo unzip -o /tmp/circle_theme-2_1_3.zip -d /var/lib/redmine/public/themes/
 
 #####change url to jpsite
 cd /var/lib/redmine/plugins
