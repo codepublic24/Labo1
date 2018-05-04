@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash
 
 # [Description:]
 #   Setup Redmine.
@@ -8,7 +8,7 @@
 #    su root
 #    export REDMINE_PLUGIN_DL_URL=<url>
 #    cd /tmp
-#    wget https://github.com/codepublic24/Labo1/blob/master/redmine/setup01-redmine.sh
+#    wget https://raw.githubusercontent.com/codepublic24/Labo1/master/redmine/setup01-redmine.sh
 #    chmod +x /tmp/setup01-redmine.sh
 #    sed -i".org.1" -e "s/#sudo wget https:\/\/REDMINE_PLUGIN_DL_URL/sudo wget \${REDMINE_PLUGIN_DL_URL}/g" /tmp/setup01-redmine.sh
 #    /tmp/setup01-redmine.sh
@@ -60,8 +60,8 @@ sudo apt install -y imagemagick libmagick++-dev fonts-takao-pgothic
 ####install ruby
 cd /tmp
 curl -O https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.gz
-tar xvf /tmpruby-2.4.1.tar.gz -C /tmp
-cd /tmpruby-2.4.1
+tar xvf /tmp/ruby-2.4.1.tar.gz -C /tmp/
+cd /tmp/ruby-2.4.1
 ./configure --disable-install-doc
 make
 make install
@@ -83,7 +83,7 @@ sudo -u postgres createdb -E UTF-8 -l ja_JP.UTF-8 -O redmine -T template0 redmin
 ####install redmine
 cd /tmp
 curl -O http://www.redmine.org/releases/redmine-3.4.5.tar.gz
-sudo tar xvf /tmpredmine-3.4.5.tar.gz -C /var/lib/
+sudo tar xvf /tmp/redmine-3.4.5.tar.gz -C /var/lib/
 sudo mv /var/lib/redmine-3.4.5 /var/lib/redmine
 sudo chown -R www-data:www-data /var/lib/redmine
 
