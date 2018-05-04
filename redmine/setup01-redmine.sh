@@ -13,7 +13,6 @@
 #    sed -i".org.1" -e "s/#sudo wget https:\/\/<url>/sudo wget https:\/\/${REDMINE_DL_URL}/g" /tmp/setup01-redmine.sh
 #    /tmp/setup01-redmine.sh
 
-mkdir /tmp
 cd /tmp
 pwd
 
