@@ -225,11 +225,15 @@ sudo tar xvf /tmp/redmine_work_time-0.3.4.tar.gz -C /var/lib/redmine/plugins/
 sudo mv /var/lib/redmine/plugins/redmine_work_time-0.3.4/ /var/lib/redmine/plugins/redmine_work_time/
 
 #####Edit Url Agile Plugin
-#sudo wget https://REDMINE_PLUGIN_DL_URL/redmine_agile-1_4_6-light.zip -O /tmp/redmine_agile-1_4_6-light.zip
-sudo unzip -o /tmp/redmine_agile-1_4_6-light.zip  -d /var/lib/redmine/plugins/
-#####Edit Url Theme
-#sudo wget https://REDMINE_PLUGIN_DL_URL/circle_theme-2_1_3.zip -O /tmp/circle_theme-2_1_3.zip
-sudo unzip -o /tmp/circle_theme-2_1_3.zip -d /var/lib/redmine/public/themes/
+echo $REDMINE_PLUGIN_DL_URL
+if [ -n "$REDMINE_PLUGIN_DL_URL" ]; then
+  echo Custom plugin install
+  #sudo wget https://REDMINE_PLUGIN_DL_URL/redmine_agile-1_4_6-light.zip -O /tmp/redmine_agile-1_4_6-light.zip
+  sudo unzip -o /tmp/redmine_agile-1_4_6-light.zip  -d /var/lib/redmine/plugins/
+  #####Edit Url Theme
+  #sudo wget https://REDMINE_PLUGIN_DL_URL/circle_theme-2_1_3.zip -O /tmp/circle_theme-2_1_3.zip
+  sudo unzip -o /tmp/circle_theme-2_1_3.zip -d /var/lib/redmine/public/themes/
+fi
 
 #####change url to jpsite
 cd /var/lib/redmine/plugins
