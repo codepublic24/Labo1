@@ -63,8 +63,8 @@ curl -O https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.gz
 tar xvf /tmp/ruby-2.4.1.tar.gz -C /tmp/
 cd /tmp/ruby-2.4.1
 ./configure --disable-install-doc
-make
-make install
+sudo make
+sudo make install
 ruby -v
 
 ####install bundle
@@ -88,7 +88,7 @@ sudo mv /var/lib/redmine-3.4.5 /var/lib/redmine
 sudo chown -R www-data:www-data /var/lib/redmine
 
 ####setup redmine database
-sudo -u www-data cat << EOF > /var/lib/redmine/config/database.yml
+sudo -u www-data cat << EOF > /tmp/database.yml
 production:
   adapter: postgresql
   database: redmine
@@ -97,10 +97,12 @@ production:
   password: "postgres"
   encoding: utf8
 EOF
+sudo -u www-data cp /tmp/database.yml /var/lib/redmine/config/
 cat /var/lib/redmine/config/database.yml
+sudo rm /tmp/database.yml
 
 ####setup redmine config
-sudo -u www-data cat << EOF > /var/lib/redmine/config/configuration.yml
+sudo -u www-data cat << EOF > /tmp/configuration.yml
 production:
   email_delivery:
     delivery_method: :smtp
@@ -109,7 +111,9 @@ production:
       port: 25
   rmagick_font_path: /usr/share/fonts/truetype/takao-gothic/TakaoPGothic.ttf
 EOF
+sudo -u www-data cp /tmp/configuration.yml /var/lib/redmine/config/
 cat /var/lib/redmine/config/configuration.yml
+sudo rm /tmp/configuration.yml
 
 ####setup redmine init
 cd /var/lib/redmine
@@ -123,7 +127,7 @@ sudo gem install passenger -v 5.1.12 --no-rdoc --no-ri
 sudo passenger-install-apache2-module --auto --languages ruby
 
 ####setup apache
-sudo cat << EOF > /etc/apache2/conf-available/redmine.conf
+sudo cat << EOF > /tmp/redmine.conf
 # Allow Redmine image,css,etc
 # Access Deny All File as Apache 2.4
 <Directory "/var/lib/redmine/public">
@@ -137,14 +141,19 @@ PassengerPoolIdleTime 864000
 PassengerStatThrottleRate 10
 # Output passenger-install-apache2-module --snippet
 EOF
-sudo cat /etc/apache2/conf-available/redmine.conf
-sudo passenger-install-apache2-module --snippet >> /etc/apache2/conf-available/redmine.conf
+sudo cat /tmp/redmine.conf
+sudo passenger-install-apache2-module --snippet >> /tmp/redmine.conf
+sudo cat /tmp/redmine.conf
+sudo cp /tmp/redmine.conf /etc/apache2/conf-available/
+sudo rm /tmp/redmine.conf 
 sudo cat /etc/apache2/conf-available/redmine.conf
 sudo a2enconf redmine
 sudo apache2ctl configtest
 
 ####setup apache uri
-sudo cat << EOF >> /etc/apache2/apache2.conf
+cd /tmp
+sudo cp /etc/apache2/apache2.conf /tmp/apache2_orig.conf
+sudo cat << EOF >> /tmp/apache2_append.conf
 #for redmine settings
 Alias /redmine /var/lib/redmine/public
 <Location /redmine>
@@ -152,14 +161,25 @@ Alias /redmine /var/lib/redmine/public
   PassengerAppRoot /var/lib/redmine
 </Location>
 EOF
+cat /tmp/apache2_orig.conf
+cat /tmp/apache2_append.conf
+cat /tmp/apache2_orig.conf /tmp/apache2_append.conf > /tmp/apache2.conf
+cat /tmp/apache2.conf
+sudo cp /tmp/apache2.conf /etc/apache2/
+sudo rm /tmp/apache2_orig.conf
+sudo rm /tmp/apache2_append.conf
 cat /etc/apache2/apache2.conf
 
 ####setup apache boot
-apache2ctl configtest
+sudo apache2ctl configtest
 sudo service apache2 reload
 
 ####setup apache index
-echo "" > /var/www/html/index.html 
+sudo echo "" > /tmp/index.html
+sudo cp /tmp/index.html /var/www/html/
+sudo cat /var/www/html/index.html
+sudo rm /tmp/index.html
+
 
 #####install redmine plugin
 #####https://qiita.com/y_hokkey/items/7c02a3af319b353136d5
