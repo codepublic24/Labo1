@@ -175,6 +175,9 @@
     - mdファイルのプレビュー(別パネル、別タブ)
       - Ctrl + k, v
       - Ctrl + Shift + v
+    - 保存ファイルと変更中の確認、終了
+      - Ctrl + k, d
+      - Ctrl + w
   - **[Bash]**
     - 履歴の編集
       - vi ~/.bash_history
