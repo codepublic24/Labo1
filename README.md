@@ -386,6 +386,8 @@
   - **[AWS]**
     - プロファイル名の確認
       - cat .aws/config
+    - プロファイル設定の確認
+      -  aws configure list --profile <profile>
     - |コード |名前|
       |:---|:---|
       |us-east-1|米国東部（バージニア北部）|
