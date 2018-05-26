@@ -10,7 +10,7 @@ echo $AWS_PROFILE_NAME
 AWS_DEFVPC_PREFIX=Def
 echo $AWS_DEFVPC_PREFIX
 
-AWS_DEFVPC_REGION=ap-northeast-1
+AWS_DEFVPC_REGION=us-east-1
 echo $AWS_DEFVPC_REGION
 
 #ALIAS
@@ -77,6 +77,19 @@ AWS_DEFVPC_CMD_RLT=`aws ec2 describe-subnets $AWS_DEFVPC_CMD_PRM | jq -r '.Subne
 echo $AWS_DEFVPC_CMD_RLT
 if [ -n $AWS_DEFVPC_CMD_RLT ]; then
   aws ec2 create-tags $AWS_DEFVPC_CMD_PRM --resources $AWS_DEFVPC_CMD_RLT --tags "Key=Name,Value=${AWS_DEFVPC_PREFIX}-Subnet-d"
+fi
+
+
+AWS_DEFVPC_CMD_RLT=`aws ec2 describe-subnets $AWS_DEFVPC_CMD_PRM | jq -r '.Subnets[] | select(.VpcId =="'${AWS_DEFVPC_CMD_RLT_VPC}'" and .AvailabilityZone == "'${AWS_DEFVPC_REGION}e'") | .SubnetId'`
+echo $AWS_DEFVPC_CMD_RLT
+if [ -n $AWS_DEFVPC_CMD_RLT ]; then
+  aws ec2 create-tags $AWS_DEFVPC_CMD_PRM --resources $AWS_DEFVPC_CMD_RLT --tags "Key=Name,Value=${AWS_DEFVPC_PREFIX}-Subnet-e"
+fi
+
+AWS_DEFVPC_CMD_RLT=`aws ec2 describe-subnets $AWS_DEFVPC_CMD_PRM | jq -r '.Subnets[] | select(.VpcId =="'${AWS_DEFVPC_CMD_RLT_VPC}'" and .AvailabilityZone == "'${AWS_DEFVPC_REGION}f'") | .SubnetId'`
+echo $AWS_DEFVPC_CMD_RLT
+if [ -n $AWS_DEFVPC_CMD_RLT ]; then
+  aws ec2 create-tags $AWS_DEFVPC_CMD_PRM --resources $AWS_DEFVPC_CMD_RLT --tags "Key=Name,Value=${AWS_DEFVPC_PREFIX}-Subnet-f"
 fi
 
 #ACL
