@@ -38,6 +38,10 @@
     - git-forestaを以下にコピー
       - C:\Program Files\Git\usr\bin
       - C:\Program Files\Git\mingw64\bin
+  - [jq](https://github.com/stedolan/jq/releases)
+    - jq-win64.exeをjqにリネームして以下にコピー
+      - C:\Program Files\Git\usr\bin
+      - C:\Program Files\Git\mingw64\bin
   - [Whitespace+](https://marketplace.visualstudio.com/items?itemName=davidhouchin.whitespace-plus)
     - [Ctrl + Shift + x]押下後、[Whitespace+]をインストール
     - [Ctrl + Shift + p]押下後、[Whitespace+ Config]を実行
