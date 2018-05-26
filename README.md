@@ -392,8 +392,14 @@
     - プロファイル設定の確認
       -  aws configure list --profile <profile>
     - プロファイル設定の変更
-      -  aws configure --profile <profile>    
-    - |コード |名前|
+      -  aws configure --profile <profile>
+    - VPCの確認(フィルタ有り/無し)
+      -  aws ec2 --region <region> describe-vpcs --profile <profile>
+      -  aws ec2 --region <region> describe-vpcs --profile <profile> --query 'Vpcs[].{VPCID:VpcId, DefaultVPC:IsDefault}'
+    - デフォルトVPCの作成
+      -  aws ec2 --region <region> create-default-vpc --profile <profile>
+    - リージョン
+      |コード |名前|
       |:---|:---|
       |us-east-1|米国東部（バージニア北部）|
       |us-east-2|米国東部 (オハイオ)|
