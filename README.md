@@ -388,6 +388,8 @@
       - cat .aws/config
     - プロファイル設定の確認
       -  aws configure list --profile <profile>
+    - プロファイル設定の変更
+      -  aws configure --profile <profile>    
     - |コード |名前|
       |:---|:---|
       |us-east-1|米国東部（バージニア北部）|
