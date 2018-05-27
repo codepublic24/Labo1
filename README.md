@@ -62,31 +62,31 @@
     - Pythonのpipを使用
       - pip install awscli
     - AWSコンソールでIAMを作成 Credential情報を取得しておく
-      - ![aws init01](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-01.JPG)  
+      - ![aws init01](./static-images/imgset002/img-aws-config-01.jpg)  
         AWSサービスで「IAM」を検索、IAMのページへ遷移  
-        ![aws init02](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-02.JPG)  
-        ![aws init03](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-03.JPG)  
+        ![aws init02](./static-images/imgset002/img-aws-config-02.jpg)  
+        ![aws init03](./static-images/imgset002/img-aws-config-03.jpg)  
         管理者グループの作成  
-        ![aws init04](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-04.JPG)  
+        ![aws init04](./static-images/imgset002/img-aws-config-04.jpg)  
         管理者グループにフルコントロールの権限を付与  
-        ![aws init05](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-05.JPG)  
-        ![aws init06](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-06.JPG)  
+        ![aws init05](./static-images/imgset002/img-aws-config-05.jpg)  
+        ![aws init06](./static-images/imgset002/img-aws-config-06.jpg)  
         管理者グループにIAMユーザーを追加  
-        ![aws init07](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-07.JPG)  
+        ![aws init07](./static-images/imgset002/img-aws-config-07.jpg)  
         Credentialを保存
     - インストール後Credentialの設定(誤接続を防ぐためProfileを使用)
       - aws configure --profile <わかりやすく打ちやすいプロファイル名>  
-        ![aws init08](https://github.com/codepublic24/static-image/blob/master/imgset002/img-aws-config-08.JPG)  
+        ![aws init08](./static-images/imgset002/img-aws-config-08.jpg)  
         保存していたCredential情報を入力
 
 - **ソフトウェア構成管理の準備(SCM)]**
   - [リポジトリの作成](https://github.com/new)
     - New repositryを押下  
-      ![new repository](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-01.JPG)
+      ![new repository](./static-images/imgset001/img-github-01.jpg)
     - リポジトリ名を設定  
-      ![repository name](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-02.JPG)
+      ![repository name](./static-images/imgset001/img-github-02.jpg)
     - READMEを自動でつくる＋ライセンスの設定  
-      ![initialize](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-03.JPG)
+      ![initialize](./static-images/imgset001/img-github-03.jpg)
 
 - **VSCodeの設定変更１**
   - 統合ターミナルをGitBashに変更  
@@ -126,10 +126,10 @@
     clip < ~/.ssh/id_rsa.pub
     ```
   - GitHubのアカウント設定から作成した公開鍵を設定  
-    ![account setting1](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-04.JPG)  
-    ![account setting2](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-05.JPG)  
-    ![account setting3](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-06.JPG)  
-    ![account setting4](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-07.JPG)  
+    ![account setting1](./static-images/imgset001/img-github-04.jpg)  
+    ![account setting2](./static-images/imgset001/img-github-05.jpg)  
+    ![account setting3](./static-images/imgset001/img-github-06.jpg)  
+    ![account setting4](./static-images/imgset001/img-github-07.jpg)  
 
   - リポジトリのクローン
     ```Bash
@@ -145,11 +145,11 @@
     git push -f origin <feature-xxx|bugfix-xxx|topic-xxx/#ticketID>
     ```
     GitHubのWebページへ移動  
-    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-08.JPG)  
+    ![github flow PR1](./static-images/imgset001/img-github-08.jpg)  
     PRを作成  
-    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-09.JPG)  
+    ![github flow PR1](./static-images/imgset001/img-github-09.jpg)  
     タイトルに[wip]＋作業説明を記載  
-    ![github flow PR1](https://github.com/codepublic24/static-image/blob/master/imgset001/img-github-10.JPG)  
+    ![github flow PR1](./static-images/imgset001/img-github-10.jpg)  
     作業開始PRを発行  
     ```Bash
     作業実施、コミット、PUSH前にリベースでwipをDrop or (#で)コメント化  
